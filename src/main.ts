@@ -1,8 +1,7 @@
-export function add(a: number, b: number): number {
-  return a + b;
+import { serveDir } from "https://deno.land/std@0.209.0/http/file_server.ts";
+
+function handler(request: Request): Promise<Response> {
+  return serveDir(request, { fsRoot: "./public" });
 }
 
-// Learn more at https://deno.land/manual/examples/module_metadata#concepts
-if (import.meta.main) {
-  console.log("Add 2 + 3 =", add(2, 3));
-}
+Deno.serve(handler);
